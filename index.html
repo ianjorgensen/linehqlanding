@@ -1,540 +1,604 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>line — design &amp; development studio for healthcare technology</title>
-  <meta name="description" content="line is a design and development studio focused on healthcare technology. We build cutting-edge solutions for our clients and for ourselves using industry standards." />
-  <meta name="theme-color" content="#0a0a0a" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Line Studio — Design & Development for Healthcare and Infrastructure</title>
+<meta name="description" content="Line Studio is a design and development studio building cutting-edge solutions for healthcare technology and critical infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F5F0;
+    --bg-alt:#EDECE5;
+    --ink:#0A0A0A;
+    --ink-2:#2a2a2a;
+    --muted:#76756e;
+    --line:rgba(10,10,10,.12);
+    --line-strong:rgba(10,10,10,.28);
+    --accent:#D62F1F;
+    --sans:'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --serif:'Instrument Serif', 'Times New Roman', serif;
+    --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
 
-  <meta property="og:title" content="line — design &amp; development studio for healthcare technology" />
-  <meta property="og:description" content="We build cutting-edge healthcare technology for our clients and for ourselves." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://linehq.com" />
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:16px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:var(--bg)}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  /* Grain overlay */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    opacity:.035;
+    z-index:999;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Cpath d='M14 44 L50 20' stroke='%23f5f1ea' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+  /* Container */
+  .wrap{
+    width:100%;
+    max-width:1440px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+  @media (max-width:720px){ .wrap{padding:0 20px} }
 
-  <style>
-    :root {
-      --bg: #f5f1ea;
-      --bg-alt: #eceadf;
-      --ink: #0a0a0a;
-      --ink-soft: #2a2a2a;
-      --muted: #6b6b66;
-      --accent: #ff5a36;
-      --line: rgba(10, 10, 10, 0.12);
-      --max: 1240px;
-    }
+  /* Nav */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(14px) saturate(1.2);
+    -webkit-backdrop-filter:blur(14px) saturate(1.2);
+    background:rgba(246,245,240,.72);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;
+  }
+  .brand-mark{
+    width:10px;height:10px;background:var(--accent);
+    display:inline-block;
+  }
+  .nav-links{
+    display:flex;gap:32px;
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .nav-links a{position:relative;transition:color .25s ease}
+  .nav-links a:hover{color:var(--accent)}
+  .nav-links a span{color:var(--muted);margin-right:6px}
+  @media (max-width:720px){ .nav-links{display:none} }
 
-    *, *::before, *::after { box-sizing: border-box; }
+  /* Section label */
+  .label{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--muted);
+    display:flex;align-items:center;gap:12px;
+  }
+  .label::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--accent);
+    display:inline-block;
+    flex-shrink:0;
+  }
 
-    html { scroll-behavior: smooth; }
+  /* ─── HERO ─────────────────────────────── */
+  .hero{
+    padding:180px 0 120px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:end;
+  }
+  @media (max-width:960px){ .hero-grid{grid-template-columns:1fr;gap:48px} }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      font-size: 17px;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-    }
+  .hero-meta{
+    display:flex;flex-direction:column;gap:24px;
+  }
+  .hero-meta .meta-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:16px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:12px;
+  }
+  .hero-meta .meta-row:last-child{border-bottom:1px solid var(--line)}
+  .hero-meta .meta-k{
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
 
-    a { color: inherit; text-decoration: none; }
+  h1.display{
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:clamp(44px, 7.8vw, 128px);
+    line-height:.96;
+    letter-spacing:-.035em;
+    margin-top:40px;
+  }
+  h1.display em{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    letter-spacing:-.02em;
+  }
+  h1.display .accent{
+    color:var(--accent);
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+  }
 
-    .wrap {
-      width: 100%;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 28px;
-    }
+  .hero-sub{
+    max-width:460px;
+    font-size:17px;
+    line-height:1.5;
+    color:var(--ink-2);
+  }
+  .hero-sub .drop{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:22px;
+    color:var(--ink);
+  }
 
-    /* ---------- Nav ---------- */
-    header.site {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: saturate(140%) blur(10px);
-      -webkit-backdrop-filter: saturate(140%) blur(10px);
-      background: rgba(245, 241, 234, 0.72);
-      border-bottom: 1px solid var(--line);
-    }
+  /* Ticker */
+  .ticker{
+    margin-top:80px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:18px 0;
+  }
+  .ticker-track{
+    display:inline-flex;
+    gap:56px;
+    animation:tick 45s linear infinite;
+    font-family:var(--mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+  }
+  .ticker-track span{display:inline-flex;align-items:center;gap:56px}
+  .ticker-track span::after{
+    content:"●";
+    color:var(--accent);
+    font-size:8px;
+  }
+  @keyframes tick{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 0;
-    }
+  /* ─── SECTIONS ─────────────────────────── */
+  section{padding:120px 0;border-bottom:1px solid var(--line)}
+  @media (max-width:720px){ section{padding:80px 0} }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 500;
-      font-size: 22px;
-      letter-spacing: -0.01em;
-    }
+  .section-head{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:40px;
+    margin-bottom:64px;
+    align-items:start;
+  }
+  .section-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:.04em;
+    padding-top:6px;
+  }
+  .section-num strong{
+    display:block;
+    font-family:var(--sans);
+    color:var(--ink);
+    font-size:48px;
+    font-weight:300;
+    letter-spacing:-.02em;
+    margin-bottom:8px;
+  }
+  .section-title{
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:clamp(32px, 4.2vw, 56px);
+    line-height:1.05;
+    letter-spacing:-.025em;
+    max-width:880px;
+  }
+  .section-title em{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+  }
+  @media (max-width:720px){
+    .section-head{grid-template-columns:1fr;gap:24px;margin-bottom:40px}
+    .section-num strong{font-size:32px;display:inline;margin-right:14px;margin-bottom:0}
+  }
 
-    .logo-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--ink);
-      position: relative;
-      display: inline-block;
-    }
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 42%, var(--bg) 42%, var(--bg) 58%, transparent 58%);
-      border-radius: 8px;
-    }
+  /* What we do */
+  .capabilities{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:720px){ .capabilities{grid-template-columns:1fr} }
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      font-size: 15px;
-      color: var(--ink-soft);
-    }
-    .nav-links a:hover { color: var(--accent); }
+  .cap{
+    background:var(--bg);
+    padding:40px;
+    display:flex;flex-direction:column;gap:16px;
+    transition:background .35s ease;
+    position:relative;
+  }
+  .cap:hover{background:var(--bg-alt)}
+  .cap-index{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:.1em;
+  }
+  .cap h3{
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:28px;
+    letter-spacing:-.02em;
+    line-height:1.1;
+  }
+  .cap h3 em{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+  }
+  .cap p{
+    color:var(--ink-2);
+    font-size:15px;
+    line-height:1.55;
+    max-width:44ch;
+  }
+  .cap-tags{
+    margin-top:auto;padding-top:16px;
+    display:flex;flex-wrap:wrap;gap:8px;
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+  }
+  .cap-tags span{
+    padding:4px 10px;
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+  }
 
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      background: var(--ink);
-      color: var(--bg);
-      border-radius: 999px;
-      font-weight: 500;
-      font-size: 14px;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+  /* Approach */
+  .approach{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:start;
+  }
+  @media (max-width:960px){ .approach{grid-template-columns:1fr;gap:40px} }
+  .approach-text{
+    font-size:22px;
+    font-weight:300;
+    line-height:1.4;
+    letter-spacing:-.01em;
+    max-width:52ch;
+  }
+  .approach-text p + p{margin-top:1em}
+  .approach-text em{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    font-size:1.08em;
+  }
 
-    @media (max-width: 720px) {
-      .nav-links a:not(.nav-cta) { display: none; }
-    }
+  .principles{display:flex;flex-direction:column}
+  .principle{
+    padding:24px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:48px 1fr;
+    gap:20px;
+    align-items:baseline;
+  }
+  .principle:last-child{border-bottom:1px solid var(--line)}
+  .principle-n{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    letter-spacing:.06em;
+  }
+  .principle h4{
+    font-family:var(--sans);
+    font-weight:500;
+    font-size:17px;
+    letter-spacing:-.005em;
+    margin-bottom:6px;
+  }
+  .principle p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.55;
+  }
 
-    /* ---------- Hero ---------- */
-    .hero {
-      padding: 96px 0 72px;
-      position: relative;
-      overflow: hidden;
-    }
+  /* Mission / big quote */
+  .mission{
+    background:var(--ink);
+    color:var(--bg);
+    border-bottom:1px solid var(--ink);
+  }
+  .mission .label{color:rgba(246,245,240,.55)}
+  .mission .label::before{background:var(--accent)}
+  .mission-body{
+    margin-top:48px;
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:clamp(28px, 4.4vw, 60px);
+    line-height:1.08;
+    letter-spacing:-.025em;
+    max-width:22ch;
+  }
+  .mission-body em{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+  }
+  .mission-body .mark{
+    color:var(--accent);
+    font-family:var(--serif);
+    font-style:italic;
+  }
+  .mission-meta{
+    margin-top:80px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:40px;
+    padding-top:32px;
+    border-top:1px solid rgba(246,245,240,.18);
+  }
+  @media (max-width:720px){ .mission-meta{grid-template-columns:1fr;gap:24px} }
+  .mission-meta .stat-k{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:rgba(246,245,240,.55);
+    margin-bottom:8px;
+  }
+  .mission-meta .stat-v{
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:22px;
+    letter-spacing:-.01em;
+  }
+  .mission-meta .stat-v em{font-family:var(--serif);font-style:italic}
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      font-size: 13px;
-      color: var(--ink-soft);
-      background: rgba(255, 255, 255, 0.5);
-    }
-    .eyebrow .dot {
-      width: 7px; height: 7px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(255, 90, 54, 0.15);
-    }
+  /* Contact */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:end;
+  }
+  @media (max-width:960px){ .contact-grid{grid-template-columns:1fr;gap:48px;align-items:start} }
 
-    h1.display {
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(42px, 7.2vw, 104px);
-      line-height: 0.98;
-      letter-spacing: -0.025em;
-      margin: 24px 0 28px;
-      max-width: 16ch;
-    }
-    h1.display em {
-      font-style: italic;
-      color: var(--accent);
-      font-weight: 300;
-    }
-    h1.display .and {
-      font-family: "Fraunces", serif;
-      font-style: italic;
-      font-weight: 300;
-    }
+  .contact-big{
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:clamp(40px, 6vw, 96px);
+    line-height:.98;
+    letter-spacing:-.03em;
+  }
+  .contact-big em{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--accent);
+  }
+  .contact-big a{
+    display:inline-block;
+    position:relative;
+    padding-bottom:.08em;
+    border-bottom:2px solid var(--ink);
+    transition:color .3s, border-color .3s;
+  }
+  .contact-big a:hover{color:var(--accent);border-color:var(--accent)}
 
-    .hero-sub {
-      max-width: 58ch;
-      font-size: clamp(17px, 1.4vw, 20px);
-      color: var(--ink-soft);
-      margin: 0 0 36px;
-    }
+  .contact-list{display:flex;flex-direction:column}
+  .contact-list .row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:20px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+    font-size:15px;
+  }
+  .contact-list .row:last-child{border-bottom:1px solid var(--line)}
+  .contact-list .k{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    padding-top:2px;
+  }
 
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+  /* Footer */
+  footer{
+    padding:48px 0 32px;
+    border-top:1px solid var(--line);
+  }
+  footer .wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:24px;
+    align-items:end;
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+  }
+  @media (max-width:720px){ footer .wrap{grid-template-columns:1fr;gap:16px} }
+  footer .center{text-align:center}
+  footer .right{text-align:right}
+  @media (max-width:720px){ footer .center,footer .right{text-align:left} }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 22px;
-      border-radius: 999px;
-      font-weight: 500;
-      font-size: 15px;
-      border: 1px solid transparent;
-      transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
-    }
-    .btn-primary { background: var(--ink); color: var(--bg); }
-    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-    .btn-ghost { border-color: var(--line); color: var(--ink); }
-    .btn-ghost:hover { border-color: var(--ink); }
-
-    .arrow { transition: transform .2s ease; }
-    .btn:hover .arrow { transform: translateX(3px); }
-
-    /* decorative line motif */
-    .motif {
-      position: absolute;
-      right: -60px;
-      top: 80px;
-      width: 520px;
-      height: 520px;
-      pointer-events: none;
-      opacity: 0.55;
-    }
-    @media (max-width: 900px) { .motif { display: none; } }
-
-    /* ---------- Marquee / trust ---------- */
-    .trust {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 18px 0;
-      font-size: 14px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .trust strong { color: var(--ink); font-weight: 500; }
-    .pills { display: flex; gap: 10px; flex-wrap: wrap; }
-    .pill {
-      padding: 6px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.5);
-      font-size: 13px;
-    }
-
-    /* ---------- Sections ---------- */
-    section { padding: 112px 0; }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 48px;
-      align-items: end;
-      margin-bottom: 56px;
-    }
-    @media (max-width: 800px) {
-      .section-head { grid-template-columns: 1fr; gap: 16px; }
-    }
-
-    .section-label {
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-label::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--ink);
-    }
-
-    h2 {
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(32px, 4.2vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin: 0;
-      max-width: 22ch;
-    }
-    h2 em { font-style: italic; color: var(--accent); font-weight: 300; }
-
-    /* ---------- What we do grid ---------- */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
-
-    .card {
-      background: var(--bg-alt);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 32px;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--ink);
-    }
-    .card .ix {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: var(--ink);
-      color: var(--bg);
-      display: grid; place-items: center;
-      margin-bottom: 28px;
-    }
-    .card h3 {
-      font-family: "Fraunces", serif;
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-      margin: 0 0 12px;
-    }
-    .card p { color: var(--ink-soft); margin: 0; font-size: 15.5px; }
-    .card ul { margin: 20px 0 0; padding: 0; list-style: none; font-size: 14px; color: var(--muted); }
-    .card ul li { padding: 6px 0; border-top: 1px solid var(--line); }
-
-    /* ---------- Approach / two-up ---------- */
-    .approach {
-      background: var(--ink);
-      color: var(--bg);
-      border-radius: 24px;
-      padding: 72px;
-    }
-    @media (max-width: 700px) { .approach { padding: 40px 28px; border-radius: 18px; } }
-
-    .approach h2 { color: var(--bg); max-width: 20ch; }
-    .approach h2 em { color: #ffb9a7; }
-
-    .approach-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px 56px;
-      margin-top: 56px;
-    }
-    @media (max-width: 800px) { .approach-grid { grid-template-columns: 1fr; } }
-
-    .approach-item .num {
-      font-family: "Fraunces", serif;
-      font-size: 40px;
-      font-weight: 300;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .approach-item h4 {
-      font-size: 20px;
-      margin: 0 0 8px;
-      font-weight: 500;
-    }
-    .approach-item p {
-      color: rgba(245, 241, 234, 0.72);
-      margin: 0;
-      font-size: 15.5px;
-    }
-
-    /* ---------- Ourselves / clients ---------- */
-    .duo {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 800px) { .duo { grid-template-columns: 1fr; } }
-
-    .duo .card { min-height: 280px; }
-
-    /* ---------- CTA ---------- */
-    .cta {
-      padding: 120px 0 128px;
-      text-align: center;
-      border-top: 1px solid var(--line);
-    }
-    .cta h2 {
-      margin: 0 auto 24px;
-      font-size: clamp(36px, 6vw, 80px);
-      max-width: 18ch;
-    }
-    .cta p { max-width: 52ch; margin: 0 auto 36px; color: var(--ink-soft); }
-
-    /* ---------- Footer ---------- */
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 40px 0 48px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .foot-links { display: flex; gap: 22px; }
-    .foot-links a:hover { color: var(--ink); }
-
-    /* subtle reveal */
-    @media (prefers-reduced-motion: no-preference) {
-      .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
-      .reveal.in { opacity: 1; transform: none; }
-    }
-  </style>
+  /* Reveal */
+  [data-reveal]{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  [data-reveal].in{opacity:1;transform:none}
+</style>
 </head>
 <body>
 
-<header class="site">
-  <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="line — home">
-      <span class="logo-mark" aria-hidden="true"></span>
-      <span>line</span>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="brand-mark"></span>
+      Line&nbsp;Studio
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#what">What we do</a>
-      <a href="#approach">Approach</a>
-      <a href="#work">Work</a>
-      <a class="nav-cta" href="mailto:hello@linehq.com">
-        Start a project
-        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
-      </a>
-    </nav>
+    <div class="nav-links">
+      <a href="#work"><span>01</span>Work</a>
+      <a href="#approach"><span>02</span>Approach</a>
+      <a href="#mission"><span>03</span>Mission</a>
+      <a href="#contact"><span>04</span>Contact</a>
+    </div>
   </div>
-</header>
+</nav>
 
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero">
-    <svg class="motif" viewBox="0 0 520 520" fill="none" aria-hidden="true">
-      <defs>
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#0a0a0a" stop-opacity="0.9"/>
-          <stop offset="1" stop-color="#ff5a36" stop-opacity="0.7"/>
-        </linearGradient>
-      </defs>
-      <g stroke="url(#g)" stroke-width="1.4" fill="none">
-        <circle cx="260" cy="260" r="90"/>
-        <circle cx="260" cy="260" r="140"/>
-        <circle cx="260" cy="260" r="190"/>
-        <circle cx="260" cy="260" r="240"/>
-      </g>
-      <path d="M20 320 L200 220 L260 260 L320 180 L500 260" stroke="#ff5a36" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="260" cy="260" r="6" fill="#ff5a36"/>
-    </svg>
-
+  <header class="hero">
     <div class="wrap">
-      <span class="eyebrow"><span class="dot"></span> Design &amp; development for healthcare</span>
-      <h1 class="display reveal">
-        Healthcare technology, <em>drawn with care.</em>
-      </h1>
-      <p class="hero-sub reveal">
-        line is a design and development studio building software for the people who look after us.
-        We partner with clinicians, founders, and health systems to ship products that are safe, clear,
-        and genuinely useful — and we build our own when we see a gap.
-      </p>
-      <div class="hero-actions reveal">
-        <a class="btn btn-primary" href="mailto:hello@linehq.com">
-          Start a project
-          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
-        </a>
-        <a class="btn btn-ghost" href="#what">What we do</a>
+      <div class="hero-grid">
+        <div>
+          <div class="label">Design &amp; Development Studio</div>
+          <h1 class="display" data-reveal>
+            Engineering<br>
+            <em>better systems</em><br>
+            for <span class="accent">life</span>&nbsp;&amp; infrastructure.
+          </h1>
+        </div>
+
+        <div class="hero-meta" data-reveal>
+          <p class="hero-sub">
+            <span class="drop">Line&nbsp;Studio</span> is a design and development practice building
+            cutting-edge solutions in healthcare technology and critical infrastructure —
+            for our clients, and for ourselves.
+          </p>
+          <div class="meta-row"><span class="meta-k">Practice</span><span>Engineering · Research · Design · Manufacturing</span></div>
+          <div class="meta-row"><span class="meta-k">Domains</span><span>Healthcare · Data&nbsp;centers</span></div>
+          <div class="meta-row"><span class="meta-k">Index</span><span>© MMXXVI / Est. — / Line.Studio</span></div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- TRUST -->
-  <div class="wrap">
-    <div class="trust">
-      <strong>Made for the people who care for people.</strong>
-      <div class="pills" aria-label="Areas of healthcare we work in">
-        <span class="pill">Hospitals</span>
-        <span class="pill">Clinics</span>
-        <span class="pill">Chronic care</span>
-        <span class="pill">Diagnostics</span>
-        <span class="pill">Public health</span>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Diagnostics</span><span>Medical&nbsp;Devices</span><span>Power&nbsp;Electronics</span>
+        <span>Thermal&nbsp;Systems</span><span>Embedded&nbsp;Firmware</span><span>Industrial&nbsp;Design</span>
+        <span>Data&nbsp;Center&nbsp;Infrastructure</span><span>Software&nbsp;Platforms</span>
+        <span>Diagnostics</span><span>Medical&nbsp;Devices</span><span>Power&nbsp;Electronics</span>
+        <span>Thermal&nbsp;Systems</span><span>Embedded&nbsp;Firmware</span><span>Industrial&nbsp;Design</span>
+        <span>Data&nbsp;Center&nbsp;Infrastructure</span><span>Software&nbsp;Platforms</span>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- WHAT -->
-  <section id="what">
+  <!-- WHAT WE DO -->
+  <section id="work">
     <div class="wrap">
       <div class="section-head">
-        <div class="section-label">What we do</div>
-        <h2>A small studio with a <em>narrow focus</em> and a wide toolkit.</h2>
+        <div class="section-num"><strong>01</strong>What&nbsp;we&nbsp;build</div>
+        <h2 class="section-title">
+          A vertically integrated studio working across <em>industrial design, electronics, firmware and software</em> — from first principle to production.
+        </h2>
       </div>
 
-      <div class="cards">
-        <article class="card reveal">
-          <div>
-            <div class="ix" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <h3>Patient experience</h3>
-            <p>Apps and services that meet people on their hardest days. Clear language, calm interfaces, and journeys designed around real lives — not idealised personas.</p>
+      <div class="capabilities">
+        <div class="cap" data-reveal>
+          <div class="cap-index">01 / Healthcare Technology</div>
+          <h3>Diagnostics &amp; <em>medical devices</em></h3>
+          <p>End-to-end development of point-of-care diagnostic instruments, cartridge systems and drug-delivery hardware — designed for manufacturability and regulatory pathways.</p>
+          <div class="cap-tags">
+            <span>Microfluidics</span><span>Optics</span><span>Firmware</span><span>510(k) / CE-IVD</span>
           </div>
-          <ul>
-            <li>Telehealth &amp; remote care</li>
-            <li>Chronic care</li>
-            <li>Prevention &amp; wellbeing</li>
-          </ul>
-        </article>
+        </div>
 
-        <article class="card reveal">
-          <div>
-            <div class="ix" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6v4H9z"/><rect x="4" y="6" width="16" height="16" rx="2"/><path d="M12 11v6"/><path d="M9 14h6"/></svg>
-            </div>
-            <h3>Clinical tools</h3>
-            <p>Software for clinicians who already have enough on their plate. We design around the shift, the chart, and the conversation in the room.</p>
+        <div class="cap" data-reveal>
+          <div class="cap-index">02 / Data Center Infrastructure</div>
+          <h3>Thermal &amp; <em>power systems</em></h3>
+          <p>High-density cooling and DC power distribution architectures for modern compute. Dry coolers, solid-state conversion, and full rack-level integration.</p>
+          <div class="cap-tags">
+            <span>Control Systems</span><span>800V DC</span><span>SiC Power</span><span>Liquid Cooling</span>
           </div>
-          <ul>
-            <li>Workflow &amp; documentation</li>
-            <li>Decision support</li>
-            <li>Triage &amp; coordination</li>
-          </ul>
-        </article>
+        </div>
 
-        <article class="card reveal">
-          <div>
-            <div class="ix" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l3-8 4 16 3-8h5"/></svg>
-            </div>
-            <h3>Care intelligence</h3>
-            <p>AI used the way it should be in healthcare — quietly, carefully, and only where it earns its place. Always with a clinician in the loop.</p>
+        <div class="cap" data-reveal>
+          <div class="cap-index">03 / Software &amp; Platforms</div>
+          <h3>Data, interfaces &amp; <em>integration</em></h3>
+          <p>Clinical and operational software — from instrument firmware and DAQ pipelines to web platforms, mobile apps and standards-based interoperability.</p>
+          <div class="cap-tags">
+            <span>FHIR / LOINC</span><span>Embedded Linux</span><span>iOS / Web</span><span>Real-time&nbsp;Control</span>
           </div>
-          <ul>
-            <li>Clinical decision support</li>
-            <li>Documentation assistance</li>
-            <li>Population insight</li>
-          </ul>
-        </article>
+        </div>
+
+        <div class="cap" data-reveal>
+          <div class="cap-index">04 / Applied R&amp;D</div>
+          <h3>Our own <em>ventures</em></h3>
+          <p>We don't just consult — we build. Several of our projects are in-house products developed alongside client work, informed by the same design standards we apply everywhere.</p>
+          <div class="cap-tags">
+            <span>Venture Building</span><span>Prototyping</span><span>Pilot&nbsp;Production</span><span>Strategy</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -542,127 +606,120 @@
   <!-- APPROACH -->
   <section id="approach">
     <div class="wrap">
-      <div class="approach reveal">
-        <div class="section-label" style="color: rgba(245,241,234,0.6);"><span style="background: var(--bg); width:28px; height:1px; display:inline-block;"></span> Approach</div>
-        <h2 style="margin-top: 16px;">Care first. <em>Craft</em> always.</h2>
-        <p style="max-width: 60ch; color: rgba(245,241,234,0.72); margin-top: 20px; font-size: 17px;">
-          Healthcare is too important for improvisation. We start from the patient and the clinician,
-          and let everything we make answer to them — quietly removing friction from the moments that matter most.
-        </p>
+      <div class="section-head">
+        <div class="section-num"><strong>02</strong>Approach</div>
+        <h2 class="section-title">
+          We work to <em>industry standards</em> — and often past them. Precision is not an aesthetic; it's a requirement of the systems we build.
+        </h2>
+      </div>
 
-        <div class="approach-grid">
-          <div class="approach-item">
-            <div class="num">01</div>
-            <h4>Start at the bedside</h4>
-            <p>We listen to clinicians and patients before we draw a thing. Assumptions don&rsquo;t survive contact with a ward.</p>
+      <div class="approach">
+        <div class="approach-text" data-reveal>
+          <p>Healthcare and infrastructure share a quiet demand: they must simply work, every time, for a very long time.</p>
+          <p>So we design <em>with the constraints on the table</em> — regulatory, thermal, electrical, clinical — and treat them as the starting geometry of the solution, not obstacles to route around.</p>
+          <p>The result is work that survives contact with the real world.</p>
+        </div>
+
+        <div class="principles" data-reveal>
+          <div class="principle">
+            <div class="principle-n">/ 01</div>
+            <div>
+              <h4>First-principles engineering</h4>
+              <p>We prefer to understand a system deeply before we decide what to build, and we're willing to go down to physics when it matters.</p>
+            </div>
           </div>
-          <div class="approach-item">
-            <div class="num">02</div>
-            <h4>Design for safety</h4>
-            <p>Clarity, dignity, and trust are not polish — they are the product. In healthcare, every detail is a duty of care.</p>
+          <div class="principle">
+            <div class="principle-n">/ 02</div>
+            <div>
+              <h4>Standards, not shortcuts</h4>
+              <p>UL, ISO, IEC, FHIR, NEC — the right standard at the right layer. It's how we ship work that's auditable, interoperable and durable.</p>
+            </div>
           </div>
-          <div class="approach-item">
-            <div class="num">03</div>
-            <h4>Earn the workflow</h4>
-            <p>The best healthcare software disappears into the work. We sweat the rhythm of a shift, a visit, a difficult conversation.</p>
+          <div class="principle">
+            <div class="principle-n">/ 03</div>
+            <div>
+              <h4>Built, not briefed</h4>
+              <p>We run our own ventures in the same domains we serve. The result is a team that thinks like operators, not advisors.</p>
+            </div>
           </div>
-          <div class="approach-item">
-            <div class="num">04</div>
-            <h4>Measure in outcomes</h4>
-            <p>We care about lives changed, not features shipped. Every release is judged by what it does for patients and the people who treat them.</p>
+          <div class="principle">
+            <div class="principle-n">/ 04</div>
+            <div>
+              <h4>Design as discipline</h4>
+              <p>Aesthetic, mechanical, electrical, software — all one surface. We resist the handoff culture that produces fragmented products.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WORK / FOR US AND CLIENTS -->
-  <section id="work">
+  <!-- MISSION -->
+  <section id="mission" class="mission">
     <div class="wrap">
-      <div class="section-head">
-        <div class="section-label">Who we build for</div>
-        <h2>For our clients. And <em>for ourselves.</em></h2>
-      </div>
+      <div class="label">Why we do it</div>
+      <p class="mission-body" data-reveal>
+        To make the world <span class="mark">measurably better</span> by making healthcare <em>work better</em> — and by building the infrastructure a more intelligent world needs.
+      </p>
 
-      <div class="duo">
-        <article class="card reveal" style="background: var(--bg);">
-          <div>
-            <div class="ix" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.8-4.5-4-4.9"/></svg>
-            </div>
-            <h3>Client work</h3>
-            <p>We partner with health-tech startups, providers, and life-science teams as an embedded design and engineering squad — from first sketch to production and beyond.</p>
-          </div>
-          <ul>
-            <li>0 &rarr; 1 product launches</li>
-            <li>Rescues &amp; rewrites</li>
-            <li>Long-term build partnerships</li>
-          </ul>
-        </article>
-
-        <article class="card reveal" style="background: var(--bg);">
-          <div>
-            <div class="ix" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg>
-            </div>
-            <h3>Our own products</h3>
-            <p>When we see a problem worth solving that no one else is taking on, we build the product ourselves — shipping tools that push the studio&rsquo;s craft forward and put value back into the world.</p>
-          </div>
-          <ul>
-            <li>Studio-incubated products</li>
-            <li>Open-source tooling</li>
-            <li>Research &amp; experiments</li>
-          </ul>
-        </article>
+      <div class="mission-meta">
+        <div><div class="stat-k">Focus</div><div class="stat-v">Health &amp; <em>infrastructure</em></div></div>
+        <div><div class="stat-k">Practice</div><div class="stat-v">Engineering · Research · Design · Manufacturing</div></div>
+        <div><div class="stat-k">Operating&nbsp;model</div><div class="stat-v"><em>Studio</em> + ventures</div></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta" id="contact">
+  <!-- CONTACT -->
+  <section id="contact">
     <div class="wrap">
-      <h2>Have something worth building?</h2>
-      <p>We take on a small number of partners each year. If you&rsquo;re working on something in healthcare that deserves real craft, we&rsquo;d love to hear about it.</p>
-      <a class="btn btn-primary" href="mailto:hello@linehq.com">
-        hello@linehq.com
-        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
-      </a>
+      <div class="section-head">
+        <div class="section-num"><strong>04</strong>Work&nbsp;with&nbsp;us</div>
+        <h2 class="section-title">
+          We take on a small number of engagements each year. <em>If the problem is real</em>, we'd like to hear about it.
+        </h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-big" data-reveal>
+          <em>Write</em><br>
+          <a href="mailto:studio@linehq.com">studio@linehq.com&nbsp;↗</a>
+        </div>
+        <div class="contact-list" data-reveal>
+          <div class="row"><div class="k">Email</div><div><a href="mailto:studio@linehq.com">studio@linehq.com</a></div></div>
+          <div class="row"><div class="k">Office</div><div>Copenhagen, DK</div></div>
+          <div class="row"><div class="k">Hours</div><div>Mon–Fri · CET</div></div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <div class="logo" style="font-size: 18px;">
-      <span class="logo-mark" aria-hidden="true"></span>
-      <span>line</span>
-    </div>
-    <div>&copy; <span id="yr"></span> line studio — linehq.com</div>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="#what">What we do</a>
-      <a href="#approach">Approach</a>
-      <a href="mailto:hello@linehq.com">Contact</a>
-    </nav>
+  <div class="wrap">
+    <div>© MMXXVI — Line&nbsp;Studio</div>
+    <div class="center">Designed &amp; built in-house</div>
+    <div class="right">v 4.2</div>
   </div>
 </footer>
 
 <script>
-  document.getElementById("yr").textContent = new Date().getFullYear();
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.15,rootMargin:"0px 0px -40px 0px"});
+  document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      }
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
-    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-  } else {
-    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
-  }
+  // Gentle nav hide on scroll down / show on up
+  let lastY = 0;
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll',()=>{
+    const y = window.scrollY;
+    if(y > 120 && y > lastY){ nav.style.transform = 'translateY(-100%)'; }
+    else { nav.style.transform = 'translateY(0)'; }
+    nav.style.transition = 'transform .35s ease';
+    lastY = y;
+  },{passive:true});
 </script>
-
 </body>
 </html>
